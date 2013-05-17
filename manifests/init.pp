@@ -1,4 +1,4 @@
-class phantomjs($version = "1.5.0" ) {
+class phantomjs($version = "1.9.0" ) {
 
     if $::architecture == "amd64" or $::architecture == "x86_64" {
         $platid = "x86_64"
@@ -8,7 +8,7 @@ class phantomjs($version = "1.5.0" ) {
 
     $filename = "phantomjs-${version}-linux-${platid}.tar.bz2"
     $phantom_src_path = "/usr/local/src/phantomjs-${version}/"
-    $phantom_bin_path = "/opt/phantomjs/"
+    $phantom_bin_path = "/opt/phantomjs"
 
     file { $phantom_src_path : ensure => directory }
 
@@ -22,7 +22,7 @@ class phantomjs($version = "1.5.0" ) {
     
     exec { "extract-${filename}" :
         path => '/usr/bin:/usr/sbin:/bin',
-        command     => "tar xvfj ${filename} -C /opt/",
+        command     => "tar xvfj ${filename} -C /opt/; mv /opt/phantomjs-${version}-linux-${platid} $phantom_bin_path",
         creates     => "/opt/phantomjs/",
         cwd         => $phantom_src_path,
         require     => Exec["download-${filename}"],
