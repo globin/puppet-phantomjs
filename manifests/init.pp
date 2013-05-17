@@ -22,7 +22,7 @@ class phantomjs($version = "1.5.0" ) {
     
     exec { "extract-${filename}" :
         path => '/usr/bin:/usr/sbin:/bin',
-        command     => "tar xvfz ${filename} -C /opt/",
+        command     => "tar xvfj ${filename} -C /opt/",
         creates     => "/opt/phantomjs/",
         cwd         => $phantom_src_path,
         require     => Exec["download-${filename}"],
