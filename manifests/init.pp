@@ -6,7 +6,7 @@ class phantomjs($version = "1.5.0" ) {
         $platid = "x86"
     }
 
-    $filename = "phantomjs-${version}-linux-${platid}-dynamic.tar.gz"
+    $filename = "phantomjs-${version}-linux-${platid}.tar.bz2"
     $phantom_src_path = "/usr/local/src/phantomjs-${version}/"
     $phantom_bin_path = "/opt/phantomjs/"
 
